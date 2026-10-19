@@ -1,5 +1,4 @@
-import { ArrowDownRight, ArrowUpRight } from "lucide-react";
-import { siteConfig } from "../config/site";
+import { ArrowDownRight } from "lucide-react";
 
 const stages = ["Question", "Evidence", "Model", "Decision"];
 
@@ -24,15 +23,6 @@ export function Hero() {
         <div className="hero-actions">
           <a className="button button--primary" href="#work">
             Explore my work <ArrowDownRight size={18} aria-hidden="true" />
-          </a>
-          <a
-            className="button button--secondary"
-            href={siteConfig.github}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub <ArrowUpRight size={18} aria-hidden="true" />
-            <span className="sr-only">(opens in a new tab)</span>
           </a>
         </div>
       </div>

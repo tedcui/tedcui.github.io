@@ -5,7 +5,6 @@ export const siteConfig = {
     "Senior Data Scientist specializing in experimentation, causal inference, applied machine learning, forecasting, optimization, analytics engineering, and production decision systems.",
   location: "Pittsburgh, Pennsylvania",
   canonicalUrl: "https://tedcui.github.io",
-  github: "https://github.com/tedcui",
   email: null as string | null,
   linkedin: null as string | null,
   resume: null as string | null,

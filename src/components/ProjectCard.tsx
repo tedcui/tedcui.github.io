@@ -40,11 +40,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
       </ul>
 
       <div className="project-card__actions">
-        <a className="text-link" href={sitePath(`work/${project.slug}/`)}>
+        <a className="project-action project-action--primary" href={sitePath(`work/${project.slug}/`)}>
           View case study <ArrowRight size={18} aria-hidden="true" />
         </a>
         {isHealthcare && (
-          <a className="text-link text-link--muted" href={sitePath("work/healthcare-ml/#interactive-demos")}>
+          <a className="project-action project-action--demo" href={sitePath("work/healthcare-ml/#interactive-demos")}>
             Explore 2 connected demos <ArrowRight size={17} aria-hidden="true" />
           </a>
         )}

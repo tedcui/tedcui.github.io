@@ -49,7 +49,6 @@ npm run preview
 
 Edit `src/config/site.ts`.
 
-- `github` is currently configured from this repository’s verified GitHub owner.
 - Set `email`, `linkedin`, and `resume` to full URLs or an email address. The two public healthcare demo URLs are grouped under `healthcareDashboards`.
 - Keep an unavailable destination as `null`; the UI will omit or clearly disable that action instead of rendering a broken link.
 - Update `canonicalUrl` if the site moves to a custom domain.

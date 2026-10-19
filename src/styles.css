@@ -209,14 +209,6 @@ ol {
   color: var(--text);
 }
 
-.primary-nav .nav-github {
-  padding: 8px 13px;
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.03);
-}
-
 .menu-button {
   display: none;
   width: 42px;
@@ -764,10 +756,51 @@ ol {
 .project-card__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 22px;
+  gap: 12px;
   align-items: center;
   margin-top: auto;
   padding-top: 32px;
+}
+
+.project-action {
+  display: inline-flex;
+  min-height: 46px;
+  padding: 0 17px;
+  gap: 9px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.2;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.project-action--primary {
+  color: #ffffff;
+  background: var(--card-accent);
+  box-shadow: 0 9px 20px color-mix(in srgb, var(--card-accent) 24%, transparent);
+}
+
+.project-action--demo {
+  color: #ffffff;
+  background: linear-gradient(110deg, var(--violet), color-mix(in srgb, var(--violet) 72%, var(--blue)));
+  box-shadow: 0 9px 20px color-mix(in srgb, var(--violet) 24%, transparent);
+}
+
+.project-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 13px 25px color-mix(in srgb, var(--card-accent) 30%, transparent);
+}
+
+.project-action svg {
+  flex: 0 0 auto;
+  transition: transform 160ms ease;
+}
+
+.project-action:hover svg {
+  transform: translateX(4px);
 }
 
 .text-link {
@@ -1740,10 +1773,6 @@ ol {
     background: var(--surface);
   }
 
-  .primary-nav .nav-github {
-    margin-top: 5px;
-  }
-
   .hero {
     gap: 52px;
     padding-block: 76px 82px;
@@ -1930,6 +1959,14 @@ ol {
   }
 
   .dashboard-card .button {
+    width: 100%;
+  }
+
+  .project-card__actions {
+    align-items: stretch;
+  }
+
+  .project-action {
     width: 100%;
   }
 

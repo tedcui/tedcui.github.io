@@ -1,4 +1,4 @@
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { siteConfig, sitePath } from "../config/site";
 
@@ -48,15 +48,6 @@ export function SiteHeader({ compact = false }: SiteHeaderProps) {
               Résumé <span aria-hidden="true">↗</span>
             </a>
           )}
-          <a
-            className="nav-github"
-            href={siteConfig.github}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub <ArrowUpRight size={15} aria-hidden="true" />
-            <span className="sr-only">(opens in a new tab)</span>
-          </a>
         </nav>
       </div>
     </header>

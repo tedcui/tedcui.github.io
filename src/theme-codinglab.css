@@ -98,7 +98,7 @@ body::before {
   position: relative;
 }
 
-.primary-nav > a:not(.nav-github)::after {
+.primary-nav > a::after {
   position: absolute;
   right: 0;
   bottom: 5px;
@@ -111,25 +111,13 @@ body::before {
   transition: transform 180ms ease;
 }
 
-.primary-nav > a:not(.nav-github):hover::after {
+.primary-nav > a:hover::after {
   transform: scaleX(1);
   transform-origin: left;
 }
 
 .primary-nav > a:hover {
   color: var(--blue);
-}
-
-.primary-nav .nav-github {
-  color: #ffffff;
-  border-color: var(--blue);
-  background: var(--blue);
-  box-shadow: 0 8px 18px rgba(64, 112, 244, 0.2);
-}
-
-.primary-nav .nav-github:hover {
-  color: #ffffff;
-  background: #2f5fdc;
 }
 
 .menu-button {
@@ -753,8 +741,7 @@ body::before {
   -webkit-background-clip: text;
 }
 
-.button--primary,
-.primary-nav .nav-github {
+.button--primary {
   background: linear-gradient(110deg, var(--blue), #5968e9 58%, var(--violet));
   border-color: transparent;
 }
