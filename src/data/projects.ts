@@ -8,9 +8,9 @@ export const projects: Project[] = [
     title: "Predictive Patient Care",
     cardTitle: "Predictive Patient Care",
     summary:
-      "A clinical analytics workflow that turns high-dimensional claims signals into care-planning forecasts and patient-risk priorities.",
+      "An end-to-end healthcare analytics system that carries fragmented clinical and administrative data through a governed feature pipeline into risk-based, capacity-aware outreach.",
     cardSummary:
-      "Clinical and claims data transformed into care-planning and risk-prioritization systems.",
+      "From governed patient data to transparent risk scoring and capacity-aware care outreach.",
     accent: "blue",
     metrics: [
       {
@@ -24,43 +24,47 @@ export const projects: Project[] = [
         detail: "Mortality-risk model"
       }
     ],
-    methods: ["Random Forest", "LASSO", "Elastic Net", "Clinical Analytics"],
+    methods: ["Data Quality", "Feature Engineering", "Risk Modeling", "Decision Support"],
     decision:
-      "Which patients are likely to need specific care resources, and where should clinical teams prioritize attention?",
+      "How can care teams trust the underlying patient data, identify elevated risk, and turn limited outreach capacity into a practical action plan?",
     context:
-      "Sanitized healthcare analytics work spanning patient-needs forecasting, mortality risk, and care-resource planning.",
+      "Sanitized healthcare analytics work spanning source ingestion, patient-level data quality, longitudinal feature engineering, mortality risk, and care-resource planning. Two interactive demos show how the data foundation connects to the operating workflow.",
     role:
-      "Modeling and analytics ownership across feature engineering, model development, and translation into care-planning workflows.",
+      "End-to-end analytics ownership across source profiling, quality controls, feature engineering, model development, and translation into care-planning workflows.",
     constraints: [
+      "Fragmented source feeds required common definitions, grains, and patient linkage",
       "High-dimensional ICD-10 and CPT feature spaces",
       "Operational outputs needed to remain interpretable to care teams",
       "Public presentation must exclude patient-level and proprietary information"
     ],
     diagram: [
-      "Clinical + claims data",
-      "ICD-10 / CPT features",
-      "Sparse feature selection",
-      "Predictive modeling",
-      "Need + risk scores",
-      "Care planning"
+      "Clinical + admin feeds",
+      "Standardize + link",
+      "Patient-month feature mart",
+      "Transparent risk model",
+      "Capacity-based outreach",
+      "Care-team action"
     ],
     approach: [
-      "Structured clinical and claims signals into model-ready feature sets.",
-      "Used LASSO and Elastic Net to control a wide, correlated predictor space.",
-      "Applied Random Forest models to capture nonlinear patient-risk patterns.",
-      "Translated predictions into resource-planning signals for RN, PT, OT, ST, and home-health aide needs."
+      "Profiled six source-feed patterns and made their contracts, grains, and refresh behavior explicit.",
+      "Standardized codes, dates, and units; linked records into a longitudinal patient view; and surfaced quality checks before publication.",
+      "Published a governed patient-month feature layer that can support reporting, measurement, and repeatable risk scoring.",
+      "Used sparse linear methods and Random Forest modeling to inspect signal, control a wide predictor space, and capture nonlinear risk patterns.",
+      "Translated risk ranking into a capacity-aware call plan, priority patient list, caregiver matching, and outcome feedback."
     ],
     rationale:
-      "The approach balanced dimensionality control with nonlinear prediction. Sparse models made the signal space easier to inspect, while tree-based modeling captured interactions that a purely linear workflow could miss.",
+      "A useful risk model depends on both trustworthy inputs and a clear path to action. The design therefore pairs lineage and quality controls with transparent modeling, then connects the resulting risk signals to the actual constraint: limited care-team capacity.",
     validation: [
-      "The mortality-risk model achieved ROC-AUC 0.79.",
+      "The portfolio mortality-risk model achieved ROC-AUC 0.79.",
       "Operational usefulness was evaluated through its effect on the manual planning workflow.",
+      "Metrics shown inside the public demos are illustrative and should not be read as the portfolio model's reported result.",
       "Detailed split, calibration, and cohort information is intentionally excluded from this sanitized public summary."
     ],
     shipped: [
+      "Source-to-feature pipeline with lineage and data-quality monitoring",
       "Patient need and risk scoring workflow",
-      "Care-resource planning outputs",
-      "Analyst-facing decision support suitable for a sanitized interactive dashboard"
+      "Capacity-based outreach planning and priority patient views",
+      "Caregiver matching and program-outcome feedback views"
     ],
     impact: [
       "Reduced manual analyst workload by more than 80%.",
@@ -70,6 +74,7 @@ export const projects: Project[] = [
     limitations: [
       "ROC-AUC describes ranking performance, not calibration or clinical utility by itself.",
       "Model outputs support professional judgment; they do not replace clinical decision-making.",
+      "The linked dashboards are sanitized demonstrations, not production systems or clinical decision tools.",
       "Public details are intentionally constrained by healthcare confidentiality."
     ]
   },

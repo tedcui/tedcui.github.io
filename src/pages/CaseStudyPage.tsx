@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, ArrowUpRight, Check, CircleAlert } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Check, CircleAlert, Database, HeartPulse } from "lucide-react";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 import { siteConfig, sitePath } from "../config/site";
@@ -78,6 +78,90 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
           </ol>
         </section>
 
+        {showDashboard && (
+          <section id="interactive-demos" className="section shell demo-suite" aria-labelledby="demo-suite-title">
+            <div className="section-heading section-heading--split">
+              <div>
+                <p className="eyebrow">Interactive system demos</p>
+                <h2 id="demo-suite-title">Follow the data into action.</h2>
+              </div>
+              <p>
+                Two focused demos tell one connected story: establish a trustworthy patient-data
+                foundation, then turn its risk-ready features into a constrained outreach plan.
+              </p>
+            </div>
+
+            <div className="dashboard-journey">
+              <article className="dashboard-card dashboard-card--pipeline">
+                <div className="dashboard-card__topline">
+                  <span>01 / Upstream foundation</span>
+                  <Database size={21} aria-hidden="true" />
+                </div>
+                <h3>Healthcare Data Pipeline</h3>
+                <p>
+                  See six source-feed patterns move through ingestion, standardization, patient
+                  linkage, quality controls, and publication to a governed patient-month feature mart.
+                </p>
+                <ul aria-label="Pipeline demo highlights">
+                  <li>Source contracts and lineage</li>
+                  <li>Identity linkage and quality checks</li>
+                  <li>Risk-ready feature publication</li>
+                </ul>
+                <a
+                  className="button button--secondary"
+                  href={siteConfig.healthcareDashboards.pipeline}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open pipeline demo <ArrowUpRight size={18} aria-hidden="true" />
+                  <span className="sr-only">(opens in a new tab)</span>
+                </a>
+              </article>
+
+              <div
+                className="dashboard-handoff"
+                role="img"
+                aria-label="The governed feature mart feeds the outreach workflow"
+              >
+                <span>Governed feature mart</span>
+                <ArrowRight size={24} aria-hidden="true" />
+                <small>Risk-ready data</small>
+              </div>
+
+              <article className="dashboard-card dashboard-card--outreach">
+                <div className="dashboard-card__topline">
+                  <span>02 / Downstream decision</span>
+                  <HeartPulse size={21} aria-hidden="true" />
+                </div>
+                <h3>Care Risk Outreach</h3>
+                <p>
+                  Explore how model scores become a capacity-aware call plan, with subgroup review,
+                  patient prioritization, caregiver matching, and program-outcome feedback.
+                </p>
+                <ul aria-label="Outreach demo highlights">
+                  <li>Model and subgroup review</li>
+                  <li>Capacity-based patient prioritization</li>
+                  <li>Caregiver matching and outcomes</li>
+                </ul>
+                <a
+                  className="button button--primary"
+                  href={siteConfig.healthcareDashboards.outreach}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open outreach demo <ArrowUpRight size={18} aria-hidden="true" />
+                  <span className="sr-only">(opens in a new tab)</span>
+                </a>
+              </article>
+            </div>
+
+            <p className="dashboard-disclaimer">
+              These sanitized demos illustrate the system design and use non-production data. Their
+              displayed metrics are separate from the reported case-study result above.
+            </p>
+          </section>
+        )}
+
         <section className="section shell case-content-grid">
           <div className="case-main-column">
             <article className="case-block">
@@ -103,23 +187,6 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
                   <li key={item}><Check size={17} aria-hidden="true" /><span>{item}</span></li>
                 ))}
               </ul>
-              {showDashboard && siteConfig.healthcareDashboard && (
-                <a
-                  className="button button--primary case-dashboard-link"
-                  href={siteConfig.healthcareDashboard}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Launch interactive dashboard <ArrowUpRight size={18} aria-hidden="true" />
-                  <span className="sr-only">(opens in a new tab)</span>
-                </a>
-              )}
-              {showDashboard && !siteConfig.healthcareDashboard && (
-                <div className="dashboard-pending">
-                  <span>Interactive dashboard</span>
-                  <p>Sanitized dashboard link will appear here once configured.</p>
-                </div>
-              )}
             </article>
           </div>
 

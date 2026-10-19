@@ -50,7 +50,7 @@ npm run preview
 Edit `src/config/site.ts`.
 
 - `github` is currently configured from this repository’s verified GitHub owner.
-- Set `email`, `linkedin`, `resume`, and `healthcareDashboard` to full URLs or an email address.
+- Set `email`, `linkedin`, and `resume` to full URLs or an email address. The two public healthcare demo URLs are grouped under `healthcareDashboards`.
 - Keep an unavailable destination as `null`; the UI will omit or clearly disable that action instead of rendering a broken link.
 - Update `canonicalUrl` if the site moves to a custom domain.
 
@@ -86,15 +86,18 @@ resume: "/resume.pdf"
 
 If the site is deployed under a repository subpath, use the configured base-path helper or a full public URL.
 
-## Set the healthcare dashboard URL
+## Set the healthcare dashboard URLs
 
-In `src/config/site.ts`, change:
+The two connected healthcare demos are configured in `src/config/site.ts`:
 
 ```ts
-healthcareDashboard: null
+healthcareDashboards: {
+  pipeline: "https://tedcui.github.io/healthcare-data-pipeline/",
+  outreach: "https://tedcui.github.io/care-risk-outreach/"
+}
 ```
 
-to the full public URL. The homepage and healthcare case study will automatically render external dashboard links using a new tab and `rel="noopener noreferrer"`.
+The healthcare case study presents them as one sequence: the pipeline produces a governed patient-month feature layer, and the outreach dashboard turns risk-ready data into a capacity-aware action plan. External demos open in a new tab with `rel="noopener noreferrer"`.
 
 ## GitHub Pages deployment
 

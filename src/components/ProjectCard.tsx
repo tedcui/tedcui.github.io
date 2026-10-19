@@ -1,5 +1,5 @@
-import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { siteConfig, sitePath } from "../config/site";
+import { ArrowRight } from "lucide-react";
+import { sitePath } from "../config/site";
 import type { Project } from "../types";
 
 type ProjectCardProps = {
@@ -43,21 +43,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <a className="text-link" href={sitePath(`work/${project.slug}/`)}>
           View case study <ArrowRight size={18} aria-hidden="true" />
         </a>
-        {isHealthcare && siteConfig.healthcareDashboard && (
-          <a
-            className="text-link text-link--muted"
-            href={siteConfig.healthcareDashboard}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open dashboard <ArrowUpRight size={17} aria-hidden="true" />
-            <span className="sr-only">(opens in a new tab)</span>
+        {isHealthcare && (
+          <a className="text-link text-link--muted" href={sitePath("work/healthcare-ml/#interactive-demos")}>
+            Explore 2 connected demos <ArrowRight size={17} aria-hidden="true" />
           </a>
-        )}
-        {isHealthcare && !siteConfig.healthcareDashboard && (
-          <span className="text-link text-link--disabled" title="Add the dashboard URL in src/config/site.ts">
-            Interactive dashboard · URL pending
-          </span>
         )}
       </div>
     </article>

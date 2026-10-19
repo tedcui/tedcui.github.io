@@ -9,7 +9,10 @@ export const siteConfig = {
   email: null as string | null,
   linkedin: null as string | null,
   resume: null as string | null,
-  healthcareDashboard: null as string | null
+  healthcareDashboards: {
+    pipeline: "https://tedcui.github.io/healthcare-data-pipeline/",
+    outreach: "https://tedcui.github.io/care-risk-outreach/"
+  }
 };
 
 export function sitePath(path = ""): string {
