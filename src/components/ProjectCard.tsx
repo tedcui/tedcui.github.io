@@ -22,7 +22,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <p>{project.cardSummary}</p>
           {project.aiLayer && (
             <span className={`project-card__ai-badge project-card__ai-badge--${project.aiLayer.status}`}>
-              <Sparkles size={14} aria-hidden="true" /> {project.aiLayer.badge}
+              <span className="project-card__ai-icon" aria-hidden="true">
+                <Sparkles size={14} />
+              </span>
+              <span>{project.aiLayer.badge}</span>
             </span>
           )}
         </div>

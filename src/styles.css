@@ -679,22 +679,44 @@ ol {
   display: inline-flex;
   width: fit-content;
   margin-top: 18px;
-  padding: 7px 10px;
-  gap: 7px;
+  padding: 7px 13px 7px 7px;
+  gap: 9px;
   align-items: center;
-  color: color-mix(in srgb, var(--card-accent) 86%, var(--text));
-  border: 1px solid color-mix(in srgb, var(--card-accent) 25%, transparent);
+  color: #fff;
+  border: 1px solid color-mix(in srgb, var(--card-accent) 72%, #fff);
   border-radius: 999px;
-  background: color-mix(in srgb, var(--card-accent) 8%, var(--surface));
+  background: linear-gradient(110deg, var(--card-accent), color-mix(in srgb, var(--card-accent) 58%, var(--cyan)));
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--card-accent) 26%, transparent);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 0.64rem;
-  font-weight: 650;
-  letter-spacing: 0.035em;
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.045em;
   text-transform: uppercase;
 }
 
+.project-card__ai-icon,
+.ai-status__icon {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.17);
+}
+
 .project-card__ai-badge--planned {
+  color: color-mix(in srgb, var(--card-accent) 88%, var(--text));
+  border-color: color-mix(in srgb, var(--card-accent) 42%, transparent);
   border-style: dashed;
+  background: color-mix(in srgb, var(--card-accent) 9%, var(--surface));
+  box-shadow: none;
+}
+
+.project-card__ai-badge--planned .project-card__ai-icon {
+  border-color: color-mix(in srgb, var(--card-accent) 25%, transparent);
+  background: color-mix(in srgb, var(--card-accent) 10%, var(--surface));
 }
 
 .project-card__metrics {
@@ -1498,22 +1520,32 @@ ol {
 .ai-status {
   display: inline-flex;
   margin-bottom: 17px;
-  padding: 7px 10px;
-  gap: 7px;
+  padding: 7px 13px 7px 7px;
+  gap: 9px;
   align-items: center;
-  color: var(--case-accent);
-  border: 1px solid color-mix(in srgb, var(--case-accent) 28%, transparent);
+  color: #fff;
+  border: 1px solid color-mix(in srgb, var(--case-accent) 68%, #fff);
   border-radius: 999px;
-  background: color-mix(in srgb, var(--case-accent) 8%, white);
+  background: linear-gradient(110deg, var(--case-accent), color-mix(in srgb, var(--case-accent) 55%, var(--cyan)));
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--case-accent) 24%, transparent);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 0.63rem;
-  font-weight: 650;
+  font-size: 0.67rem;
+  font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .ai-status--planned {
+  color: var(--case-accent);
+  border-color: color-mix(in srgb, var(--case-accent) 42%, transparent);
   border-style: dashed;
+  background: color-mix(in srgb, var(--case-accent) 8%, var(--surface));
+  box-shadow: none;
+}
+
+.ai-status--planned .ai-status__icon {
+  border-color: color-mix(in srgb, var(--case-accent) 24%, transparent);
+  background: color-mix(in srgb, var(--case-accent) 10%, var(--surface));
 }
 
 .ai-layer-grid {

@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Ted Cui",
-  title: "Senior Full-Stack Data Scientist",
+  title: "Full-Stack Data Scientist",
   description:
     "Senior Data Scientist specializing in experimentation, causal inference, applied machine learning, forecasting, optimization, analytics engineering, AI-assisted decision support, and production decision systems.",
   location: "Pittsburgh, Pennsylvania",

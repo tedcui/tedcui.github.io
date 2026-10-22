@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check, CircleAlert, Database, HeartPulse, Sparkles } from "lucide-react";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
@@ -13,6 +14,22 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
   const projectIndex = projects.findIndex((item) => item.slug === project.slug);
   const nextProject = projects[(projectIndex + 1) % projects.length];
   const showDashboard = project.slug === "healthcare-ml";
+
+  useEffect(() => {
+    const scrollToHash = () => {
+      const sectionId = decodeURIComponent(window.location.hash.slice(1));
+      if (!sectionId) return;
+
+      window.requestAnimationFrame(() => {
+        document.getElementById(sectionId)?.scrollIntoView({ block: "start" });
+      });
+    };
+
+    scrollToHash();
+    window.addEventListener("hashchange", scrollToHash);
+
+    return () => window.removeEventListener("hashchange", scrollToHash);
+  }, [project.slug]);
 
   return (
     <>
@@ -58,93 +75,6 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
             <p>{project.role}</p>
           </article>
         </section>
-
-        <section className="section shell case-architecture" aria-labelledby="architecture-title">
-          <div className="section-heading section-heading--split">
-            <div>
-              <p className="eyebrow">System architecture</p>
-              <h2 id="architecture-title">From signal to decision.</h2>
-            </div>
-            <p>Sanitized workflow showing how raw inputs become an operational action.</p>
-          </div>
-          <ol className="architecture-flow">
-            {project.diagram.map((step, index) => (
-              <li key={step}>
-                <span>0{index + 1}</span>
-                <strong>{step}</strong>
-                {index < project.diagram.length - 1 && <i aria-hidden="true"><ArrowRight size={17} /></i>}
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        {project.aiLayer && (
-          <section
-            id="ai-layer"
-            className={`section shell case-ai-layer case-ai-layer--${project.aiLayer.status}`}
-            aria-labelledby="ai-layer-title"
-          >
-            <div className="section-heading section-heading--split">
-              <div>
-                <p className="eyebrow">Applied AI layer</p>
-                <span className={`ai-status ai-status--${project.aiLayer.status}`}>
-                  <Sparkles size={14} aria-hidden="true" />
-                  {project.aiLayer.status === "live" ? "Live AI-assisted demo" : "Planned AI extension"}
-                </span>
-                <h2 id="ai-layer-title">{project.aiLayer.title}</h2>
-              </div>
-              <p>{project.aiLayer.summary}</p>
-            </div>
-
-            <div className="ai-layer-grid">
-              <article>
-                <div className="ai-layer-grid__topline">
-                  <span>01 / Grounding inputs</span>
-                  <Database size={20} aria-hidden="true" />
-                </div>
-                <h3>What the AI can see</h3>
-                <ul>
-                  {project.aiLayer.inputs.map((item) => <li key={item}>{item}</li>)}
-                </ul>
-              </article>
-              <article>
-                <div className="ai-layer-grid__topline">
-                  <span>02 / Assistance</span>
-                  <Sparkles size={20} aria-hidden="true" />
-                </div>
-                <h3>What it helps explain</h3>
-                <ul>
-                  {project.aiLayer.assistance.map((item) => <li key={item}>{item}</li>)}
-                </ul>
-              </article>
-              <article>
-                <div className="ai-layer-grid__topline">
-                  <span>03 / Guardrails</span>
-                  <CircleAlert size={20} aria-hidden="true" />
-                </div>
-                <h3>What keeps it bounded</h3>
-                <ul>
-                  {project.aiLayer.guardrails.map((item) => <li key={item}>{item}</li>)}
-                </ul>
-              </article>
-            </div>
-
-            <ol className="ai-layer-flow" aria-label="AI-assisted decision flow">
-              {project.aiLayer.flow.map((step, index) => (
-                <li key={step}>
-                  <span>0{index + 1}</span>
-                  <strong>{step}</strong>
-                  {index < project.aiLayer!.flow.length - 1 && <ArrowRight size={17} aria-hidden="true" />}
-                </li>
-              ))}
-            </ol>
-
-            <p className="ai-layer-note">
-              <CircleAlert size={17} aria-hidden="true" />
-              <span>{project.aiLayer.note}</span>
-            </p>
-          </section>
-        )}
 
         {showDashboard && (
           <section id="interactive-demos" className="section shell demo-suite" aria-labelledby="demo-suite-title">
@@ -227,6 +157,95 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
             <p className="dashboard-disclaimer">
               These sanitized demos illustrate the system design and use non-production data. Their
               displayed metrics are separate from the reported case-study result above.
+            </p>
+          </section>
+        )}
+
+        <section className="section shell case-architecture" aria-labelledby="architecture-title">
+          <div className="section-heading section-heading--split">
+            <div>
+              <p className="eyebrow">System architecture</p>
+              <h2 id="architecture-title">From signal to decision.</h2>
+            </div>
+            <p>Sanitized workflow showing how raw inputs become an operational action.</p>
+          </div>
+          <ol className="architecture-flow">
+            {project.diagram.map((step, index) => (
+              <li key={step}>
+                <span>0{index + 1}</span>
+                <strong>{step}</strong>
+                {index < project.diagram.length - 1 && <i aria-hidden="true"><ArrowRight size={17} /></i>}
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        {project.aiLayer && (
+          <section
+            id="ai-layer"
+            className={`section shell case-ai-layer case-ai-layer--${project.aiLayer.status}`}
+            aria-labelledby="ai-layer-title"
+          >
+            <div className="section-heading section-heading--split">
+              <div>
+                <p className="eyebrow">Applied AI layer</p>
+                <span className={`ai-status ai-status--${project.aiLayer.status}`}>
+                  <span className="ai-status__icon" aria-hidden="true">
+                    <Sparkles size={14} />
+                  </span>
+                  {project.aiLayer.status === "live" ? "Live AI-assisted demo" : "Planned AI extension"}
+                </span>
+                <h2 id="ai-layer-title">{project.aiLayer.title}</h2>
+              </div>
+              <p>{project.aiLayer.summary}</p>
+            </div>
+
+            <div className="ai-layer-grid">
+              <article>
+                <div className="ai-layer-grid__topline">
+                  <span>01 / Grounding inputs</span>
+                  <Database size={20} aria-hidden="true" />
+                </div>
+                <h3>What the AI can see</h3>
+                <ul>
+                  {project.aiLayer.inputs.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              </article>
+              <article>
+                <div className="ai-layer-grid__topline">
+                  <span>02 / Assistance</span>
+                  <Sparkles size={20} aria-hidden="true" />
+                </div>
+                <h3>What it helps explain</h3>
+                <ul>
+                  {project.aiLayer.assistance.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              </article>
+              <article>
+                <div className="ai-layer-grid__topline">
+                  <span>03 / Guardrails</span>
+                  <CircleAlert size={20} aria-hidden="true" />
+                </div>
+                <h3>What keeps it bounded</h3>
+                <ul>
+                  {project.aiLayer.guardrails.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              </article>
+            </div>
+
+            <ol className="ai-layer-flow" aria-label="AI-assisted decision flow">
+              {project.aiLayer.flow.map((step, index) => (
+                <li key={step}>
+                  <span>0{index + 1}</span>
+                  <strong>{step}</strong>
+                  {index < project.aiLayer!.flow.length - 1 && <ArrowRight size={17} aria-hidden="true" />}
+                </li>
+              ))}
+            </ol>
+
+            <p className="ai-layer-note">
+              <CircleAlert size={17} aria-hidden="true" />
+              <span>{project.aiLayer.note}</span>
             </p>
           </section>
         )}

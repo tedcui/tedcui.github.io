@@ -10,7 +10,7 @@ export function Hero() {
           Hello, I’m Ted Cui
         </p>
         <h1 id="hero-title">
-          Senior Full-Stack
+          Full-Stack
           <span>Data Scientist.</span>
         </h1>
         <p className="hero-statement">
