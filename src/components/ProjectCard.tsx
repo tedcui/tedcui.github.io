@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { sitePath } from "../config/site";
 import type { Project } from "../types";
 
@@ -20,6 +20,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <div className="project-card__copy">
           <h3>{project.cardTitle}</h3>
           <p>{project.cardSummary}</p>
+          {project.aiLayer && (
+            <span className={`project-card__ai-badge project-card__ai-badge--${project.aiLayer.status}`}>
+              <Sparkles size={14} aria-hidden="true" /> {project.aiLayer.badge}
+            </span>
+          )}
         </div>
         <div className="project-card__metrics">
           {project.metrics.slice(0, 2).map((metric) => (

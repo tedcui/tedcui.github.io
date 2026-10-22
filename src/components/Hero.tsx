@@ -18,7 +18,8 @@ export function Hero() {
         </p>
         <p className="hero-capabilities">
           Experimentation <i>·</i> Causal Inference <i>·</i> Applied ML <i>·</i>
-          Forecasting <i>·</i> Optimization <i>·</i> Analytics Engineering <i>·</i> Pittsburgh, PA
+          Forecasting <i>·</i> Optimization <i>·</i> Analytics Engineering <i>·</i>
+          Applied AI <i>·</i> Pittsburgh, PA
         </p>
         <div className="hero-actions">
           <a className="button button--primary" href="#work">

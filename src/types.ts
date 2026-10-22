@@ -4,6 +4,18 @@ export type Metric = {
   detail?: string;
 };
 
+export type AILayer = {
+  status: "live" | "planned";
+  badge: string;
+  title: string;
+  summary: string;
+  inputs: string[];
+  assistance: string[];
+  guardrails: string[];
+  flow: string[];
+  note: string;
+};
+
 export type Project = {
   slug: string;
   number: string;
@@ -26,4 +38,5 @@ export type Project = {
   shipped: string[];
   impact: string[];
   limitations: string[];
+  aiLayer?: AILayer;
 };

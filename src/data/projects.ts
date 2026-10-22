@@ -4,13 +4,13 @@ export const projects: Project[] = [
   {
     slug: "healthcare-ml",
     number: "01",
-    category: "Healthcare AI",
+    category: "Healthcare AI + Decision Support",
     title: "Predictive Patient Care",
     cardTitle: "Predictive Patient Care",
     summary:
-      "An end-to-end healthcare analytics system that carries fragmented clinical and administrative data through a governed feature pipeline into risk-based, capacity-aware outreach.",
+      "An end-to-end healthcare decision system that combines governed patient data, transparent risk modeling, capacity-aware outreach, and an AI-assisted insight layer.",
     cardSummary:
-      "From governed patient data to transparent risk scoring and capacity-aware care outreach.",
+      "From governed patient data to transparent risk scoring, capacity-aware outreach, and AI-assisted explanation.",
     accent: "blue",
     metrics: [
       {
@@ -24,7 +24,7 @@ export const projects: Project[] = [
         detail: "Mortality-risk model"
       }
     ],
-    methods: ["Data Quality", "Feature Engineering", "Risk Modeling", "Decision Support"],
+    methods: ["Data Quality", "Risk Modeling", "AI-Assisted Insights", "Human-in-the-Loop"],
     decision:
       "How can care teams trust the underlying patient data, identify elevated risk, and turn limited outreach capacity into a practical action plan?",
     context:
@@ -50,7 +50,8 @@ export const projects: Project[] = [
       "Standardized codes, dates, and units; linked records into a longitudinal patient view; and surfaced quality checks before publication.",
       "Published a governed patient-month feature layer that can support reporting, measurement, and repeatable risk scoring.",
       "Used sparse linear methods and Random Forest modeling to inspect signal, control a wide predictor space, and capture nonlinear risk patterns.",
-      "Translated risk ranking into a capacity-aware call plan, priority patient list, caregiver matching, and outcome feedback."
+      "Translated risk ranking into a capacity-aware call plan, priority patient list, caregiver matching, and outcome feedback.",
+      "Added a controlled AI-assisted narrative that explains queue position, predictive drivers, outreach framing, and caregiver-match tradeoffs for human review."
     ],
     rationale:
       "A useful risk model depends on both trustworthy inputs and a clear path to action. The design therefore pairs lineage and quality controls with transparent modeling, then connects the resulting risk signals to the actual constraint: limited care-team capacity.",
@@ -64,7 +65,8 @@ export const projects: Project[] = [
       "Source-to-feature pipeline with lineage and data-quality monitoring",
       "Patient need and risk scoring workflow",
       "Capacity-based outreach planning and priority patient views",
-      "Caregiver matching and program-outcome feedback views"
+      "Caregiver matching and program-outcome feedback views",
+      "AI-assisted patient and caregiver explanations grounded in the dashboard context"
     ],
     impact: [
       "Reduced manual analyst workload by more than 80%.",
@@ -75,8 +77,41 @@ export const projects: Project[] = [
       "ROC-AUC describes ranking performance, not calibration or clinical utility by itself.",
       "Model outputs support professional judgment; they do not replace clinical decision-making.",
       "The linked dashboards are sanitized demonstrations, not production systems or clinical decision tools.",
+      "The public demo uses controlled narrative logic; a production LLM or RAG implementation would require secured retrieval, formal evaluation, monitoring, and clinical governance.",
       "Public details are intentionally constrained by healthcare confidentiality."
-    ]
+    ],
+    aiLayer: {
+      status: "live",
+      badge: "AI insight agent · live demo",
+      title: "AI that explains the decision—not replaces the clinician.",
+      summary:
+        "The insight agent turns structured model outputs into a concise, patient-specific narrative. It explains why a patient entered the outreach queue, provides model context, suggests outreach framing, and makes caregiver-match tradeoffs easier to review.",
+      inputs: [
+        "Patient risk score and queue position",
+        "Predictive drivers and odds-ratio context",
+        "Caregiver specialty, availability, distance, and capacity"
+      ],
+      assistance: [
+        "Summarizes why the patient was prioritized",
+        "Translates predictive signals into plain language",
+        "Suggests a prevention-focused conversation",
+        "Explains recommended and alternative caregiver matches"
+      ],
+      guardrails: [
+        "No diagnosis or autonomous care decision",
+        "Predictive—not causal—language",
+        "Human review before outreach action",
+        "Sanitized data and visible model limitations"
+      ],
+      flow: [
+        "Patient + model context",
+        "Grounded explanation",
+        "Care-team review",
+        "Outreach action"
+      ],
+      note:
+        "The live public demo uses controlled, context-grounded narrative logic. A production LLM/RAG extension would retrieve approved model documentation and outreach guidance, cite its sources, and require security, evaluation, and monitoring before use."
+    }
   },
   {
     slug: "bayesian-mmm",
@@ -85,16 +120,16 @@ export const projects: Project[] = [
     title: "Bayesian MMM + Price Elasticity",
     cardTitle: "Bayesian MMM + Price Elasticity",
     summary:
-      "A connected modeling system for understanding price sensitivity, customer heterogeneity, and cross-channel marketing contribution.",
+      "A connected modeling system for understanding price sensitivity, customer heterogeneity, and cross-channel marketing contribution, with a planned AI copilot for interpreting results.",
     cardSummary:
-      "Turning more than 100 million loyalty transactions into pricing and marketing decisions.",
+      "Turning more than 100 million loyalty transactions into pricing and marketing decisions, with an AI interpretation layer planned.",
     accent: "violet",
     metrics: [
       { value: "+2.3%", label: "revenue lift", detail: "Portfolio outcome" },
       { value: "+4.5%", label: "marketing ROI", detail: "Portfolio outcome" },
       { value: "6", label: "customer segments", detail: "Actionable groups" }
     ],
-    methods: ["Bayesian Modeling", "Hierarchical Models", "K-Means", "Scenario Analysis"],
+    methods: ["Bayesian Modeling", "Hierarchical Models", "Scenario Analysis", "AI Copilot (Planned)"],
     decision:
       "How should pricing and marketing investment change across customer segments?",
     context:
@@ -140,8 +175,41 @@ export const projects: Project[] = [
     limitations: [
       "Marketing mix results depend on the quality and variation of historical inputs.",
       "Scenario outputs are estimates, not guarantees of future performance.",
+      "The AI model copilot is a planned extension and is not included among the shipped project outcomes.",
       "The public case study does not disclose company, channel, or customer-level data."
-    ]
+    ],
+    aiLayer: {
+      status: "planned",
+      badge: "AI model copilot · planned",
+      title: "A model copilot for interpreting uncertainty and impact.",
+      summary:
+        "A planned conversational layer would help stakeholders understand channel contribution, segment-level elasticity, uncertainty, and scenario results without reducing the Bayesian model to a single point estimate.",
+      inputs: [
+        "Posterior summaries and channel contribution",
+        "Segment-level elasticity estimates",
+        "Scenario tables, metric glossary, and model documentation"
+      ],
+      assistance: [
+        "Answers natural-language questions about model results",
+        "Explains credible intervals and decision uncertainty",
+        "Compares pricing and media scenarios",
+        "Separates model evidence from business recommendations"
+      ],
+      guardrails: [
+        "Citations back to model outputs and definitions",
+        "Uncertainty preserved in every explanation",
+        "No unsupported causal claims",
+        "Stakeholder approval before planning decisions"
+      ],
+      flow: [
+        "Model outputs + documentation",
+        "RAG-grounded context",
+        "LLM explanation",
+        "Stakeholder decision"
+      ],
+      note:
+        "This copilot is a planned extension, not a shipped project result. The intended RAG layer would ground responses in posterior outputs, scenario tables, metric definitions, assumptions, and the model card."
+    }
   },
   {
     slug: "experimentation",

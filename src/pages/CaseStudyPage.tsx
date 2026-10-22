@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, ArrowUpRight, Check, CircleAlert, Database, HeartPulse } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Check, CircleAlert, Database, HeartPulse, Sparkles } from "lucide-react";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 import { siteConfig, sitePath } from "../config/site";
@@ -78,6 +78,74 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
           </ol>
         </section>
 
+        {project.aiLayer && (
+          <section
+            id="ai-layer"
+            className={`section shell case-ai-layer case-ai-layer--${project.aiLayer.status}`}
+            aria-labelledby="ai-layer-title"
+          >
+            <div className="section-heading section-heading--split">
+              <div>
+                <p className="eyebrow">Applied AI layer</p>
+                <span className={`ai-status ai-status--${project.aiLayer.status}`}>
+                  <Sparkles size={14} aria-hidden="true" />
+                  {project.aiLayer.status === "live" ? "Live AI-assisted demo" : "Planned AI extension"}
+                </span>
+                <h2 id="ai-layer-title">{project.aiLayer.title}</h2>
+              </div>
+              <p>{project.aiLayer.summary}</p>
+            </div>
+
+            <div className="ai-layer-grid">
+              <article>
+                <div className="ai-layer-grid__topline">
+                  <span>01 / Grounding inputs</span>
+                  <Database size={20} aria-hidden="true" />
+                </div>
+                <h3>What the AI can see</h3>
+                <ul>
+                  {project.aiLayer.inputs.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              </article>
+              <article>
+                <div className="ai-layer-grid__topline">
+                  <span>02 / Assistance</span>
+                  <Sparkles size={20} aria-hidden="true" />
+                </div>
+                <h3>What it helps explain</h3>
+                <ul>
+                  {project.aiLayer.assistance.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              </article>
+              <article>
+                <div className="ai-layer-grid__topline">
+                  <span>03 / Guardrails</span>
+                  <CircleAlert size={20} aria-hidden="true" />
+                </div>
+                <h3>What keeps it bounded</h3>
+                <ul>
+                  {project.aiLayer.guardrails.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              </article>
+            </div>
+
+            <ol className="ai-layer-flow" aria-label="AI-assisted decision flow">
+              {project.aiLayer.flow.map((step, index) => (
+                <li key={step}>
+                  <span>0{index + 1}</span>
+                  <strong>{step}</strong>
+                  {index < project.aiLayer!.flow.length - 1 && <ArrowRight size={17} aria-hidden="true" />}
+                </li>
+              ))}
+            </ol>
+
+            <p className="ai-layer-note">
+              <CircleAlert size={17} aria-hidden="true" />
+              <span>{project.aiLayer.note}</span>
+            </p>
+          </section>
+        )}
+
         {showDashboard && (
           <section id="interactive-demos" className="section shell demo-suite" aria-labelledby="demo-suite-title">
             <div className="section-heading section-heading--split">
@@ -121,11 +189,11 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
               <div
                 className="dashboard-handoff"
                 role="img"
-                aria-label="The governed feature mart feeds the outreach workflow"
+                aria-label="The governed feature mart and model context feed the outreach workflow"
               >
-                <span>Governed feature mart</span>
+                <span>Feature mart + model context</span>
                 <ArrowRight size={24} aria-hidden="true" />
-                <small>Risk-ready data</small>
+                <small>Risk-ready evidence</small>
               </div>
 
               <article className="dashboard-card dashboard-card--outreach">
@@ -133,15 +201,16 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
                   <span>02 / Downstream decision</span>
                   <HeartPulse size={21} aria-hidden="true" />
                 </div>
-                <h3>Care Risk Outreach</h3>
+                <h3>Care Risk Outreach + AI Insight</h3>
                 <p>
                   Explore how model scores become a capacity-aware call plan, with subgroup review,
-                  patient prioritization, caregiver matching, and program-outcome feedback.
+                  patient prioritization, AI-assisted explanation, caregiver matching, and program-outcome feedback.
                 </p>
                 <ul aria-label="Outreach demo highlights">
                   <li>Model and subgroup review</li>
                   <li>Capacity-based patient prioritization</li>
-                  <li>Caregiver matching and outcomes</li>
+                  <li>AI-assisted patient narrative</li>
+                  <li>Explainable caregiver matching and outcomes</li>
                 </ul>
                 <a
                   className="button button--primary"
@@ -149,7 +218,7 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Open outreach demo <ArrowUpRight size={18} aria-hidden="true" />
+                  Open AI-enabled outreach demo <ArrowUpRight size={18} aria-hidden="true" />
                   <span className="sr-only">(opens in a new tab)</span>
                 </a>
               </article>

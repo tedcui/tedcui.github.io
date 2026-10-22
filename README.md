@@ -65,6 +65,7 @@ Project cards and case-study pages share `src/data/projects.ts`. Each project co
 - shipped outputs
 - impact and limitations
 - metric values and evidence labels
+- optional AI-layer status, grounding inputs, assistance patterns, guardrails, and decision flow
 
 Keep every claim accurate, sanitized, and attributable. Distinguish observed outcomes from model estimates, forecasts, and annualized opportunities.
 

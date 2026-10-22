@@ -1,4 +1,5 @@
 import { About } from "../components/About";
+import { AppliedAI } from "../components/AppliedAI";
 import { Hero } from "../components/Hero";
 import { Lifecycle } from "../components/Lifecycle";
 import { Metrics } from "../components/Metrics";
@@ -32,6 +33,7 @@ export function HomePage() {
           </div>
         </section>
 
+        <AppliedAI />
         <Lifecycle />
         <TechStack />
         <About />
