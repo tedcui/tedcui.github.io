@@ -676,47 +676,77 @@ ol {
 }
 
 .project-card__ai-badge {
+  position: relative;
   display: inline-flex;
   width: fit-content;
-  margin-top: 18px;
-  padding: 7px 13px 7px 7px;
-  gap: 9px;
+  margin-top: 21px;
+  padding: 1px 0 1px 14px;
+  gap: 10px;
   align-items: center;
-  color: #fff;
-  border: 1px solid color-mix(in srgb, var(--card-accent) 72%, #fff);
-  border-radius: 999px;
-  background: linear-gradient(110deg, var(--card-accent), color-mix(in srgb, var(--card-accent) 58%, var(--cyan)));
-  box-shadow: 0 10px 24px color-mix(in srgb, var(--card-accent) 26%, transparent);
+  color: var(--text);
+}
+
+.project-card__ai-badge::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  content: "";
+  border-radius: 3px;
+  background: linear-gradient(180deg, var(--card-accent), color-mix(in srgb, var(--card-accent) 45%, var(--cyan)));
+}
+
+.project-card__ai-icon {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  place-items: center;
+  color: var(--card-accent);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--card-accent) 10%, var(--surface));
+}
+
+.project-card__ai-copy {
+  display: grid;
+  gap: 3px;
+}
+
+.project-card__ai-copy strong {
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.005em;
+  line-height: 1.1;
+}
+
+.project-card__ai-copy small {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  color: var(--muted);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 0.67rem;
-  font-weight: 700;
-  letter-spacing: 0.045em;
+  font-size: 0.59rem;
+  font-weight: 650;
+  letter-spacing: 0.07em;
+  line-height: 1.2;
   text-transform: uppercase;
 }
 
-.project-card__ai-icon,
-.ai-status__icon {
-  display: grid;
-  width: 27px;
-  height: 27px;
-  flex: 0 0 auto;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.42);
+.project-card__ai-copy small i {
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.17);
+  background: var(--cyan);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--cyan) 12%, transparent);
 }
 
 .project-card__ai-badge--planned {
-  color: color-mix(in srgb, var(--card-accent) 88%, var(--text));
-  border-color: color-mix(in srgb, var(--card-accent) 42%, transparent);
-  border-style: dashed;
-  background: color-mix(in srgb, var(--card-accent) 9%, var(--surface));
-  box-shadow: none;
+  color: color-mix(in srgb, var(--card-accent) 72%, var(--text));
 }
 
-.project-card__ai-badge--planned .project-card__ai-icon {
-  border-color: color-mix(in srgb, var(--card-accent) 25%, transparent);
-  background: color-mix(in srgb, var(--card-accent) 10%, var(--surface));
+.project-card__ai-badge--planned .project-card__ai-copy small i {
+  border: 1px solid var(--card-accent);
+  background: transparent;
+  box-shadow: none;
 }
 
 .project-card__metrics {
@@ -1518,34 +1548,41 @@ ol {
 }
 
 .ai-status {
+  position: relative;
   display: inline-flex;
   margin-bottom: 17px;
-  padding: 7px 13px 7px 7px;
-  gap: 9px;
+  padding: 2px 0 2px 13px;
+  gap: 8px;
   align-items: center;
-  color: #fff;
-  border: 1px solid color-mix(in srgb, var(--case-accent) 68%, #fff);
-  border-radius: 999px;
-  background: linear-gradient(110deg, var(--case-accent), color-mix(in srgb, var(--case-accent) 55%, var(--cyan)));
-  box-shadow: 0 10px 24px color-mix(in srgb, var(--case-accent) 24%, transparent);
+  color: var(--case-accent);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 0.67rem;
+  font-size: 0.64rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.065em;
   text-transform: uppercase;
 }
 
-.ai-status--planned {
-  color: var(--case-accent);
-  border-color: color-mix(in srgb, var(--case-accent) 42%, transparent);
-  border-style: dashed;
-  background: color-mix(in srgb, var(--case-accent) 8%, var(--surface));
-  box-shadow: none;
+.ai-status::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  content: "";
+  border-radius: 3px;
+  background: var(--case-accent);
 }
 
-.ai-status--planned .ai-status__icon {
-  border-color: color-mix(in srgb, var(--case-accent) 24%, transparent);
+.ai-status__icon {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 7px;
   background: color-mix(in srgb, var(--case-accent) 10%, var(--surface));
+}
+
+.ai-status--planned {
+  color: color-mix(in srgb, var(--case-accent) 76%, var(--text));
 }
 
 .ai-layer-grid {
@@ -1781,14 +1818,16 @@ ol {
 }
 
 .dashboard-card--pipeline .button--secondary {
-  color: var(--cyan);
-  border-color: color-mix(in srgb, var(--cyan) 42%, transparent);
-  background: color-mix(in srgb, var(--cyan) 5%, var(--surface));
+  color: #ffffff;
+  border-color: color-mix(in srgb, var(--cyan) 76%, var(--text));
+  background: color-mix(in srgb, var(--cyan) 76%, var(--text));
+  box-shadow: 0 9px 20px color-mix(in srgb, var(--cyan) 24%, transparent);
 }
 
 .dashboard-card--pipeline .button--secondary:hover {
+  color: var(--cyan);
   border-color: var(--cyan);
-  background: color-mix(in srgb, var(--cyan) 10%, var(--surface));
+  background: var(--surface);
 }
 
 .dashboard-card--outreach .button--primary {

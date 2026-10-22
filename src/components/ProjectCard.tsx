@@ -8,6 +8,7 @@ type ProjectCardProps = {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const isHealthcare = project.slug === "healthcare-ml";
+  const [aiFeature, aiAvailability] = project.aiLayer?.badge.split(" · ") ?? [];
 
   return (
     <article className={`project-card project-card--${project.accent}`}>
@@ -25,7 +26,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
               <span className="project-card__ai-icon" aria-hidden="true">
                 <Sparkles size={14} />
               </span>
-              <span>{project.aiLayer.badge}</span>
+              <span className="project-card__ai-copy">
+                <strong>{aiFeature}</strong>
+                <small>
+                  <i aria-hidden="true" />
+                  {aiAvailability}
+                </small>
+              </span>
             </span>
           )}
         </div>
