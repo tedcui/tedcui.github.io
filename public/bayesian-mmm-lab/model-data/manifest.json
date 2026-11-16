@@ -1,0 +1,80 @@
+{
+  "bundle_id": "94c839081ea64e565a5c1f546e4e65f07394df9b628e98f0ec9eb58a631808c9",
+  "channels": [
+    "coupon",
+    "retailer_promotion",
+    "digital"
+  ],
+  "dates": {
+    "first_holdout_week": "2024-12-02",
+    "first_week": "2023-01-02",
+    "last_training_week": "2024-11-25",
+    "last_week": "2025-04-14"
+  },
+  "disclosure": "Synthetic data \u00b7 illustrative model results",
+  "files": {
+    "contributions.json": {
+      "bytes": 856684,
+      "sha256": "869f151bd02ef84976c0d172a344828cb963a73fdffe17338dcb8a3231bcbe0e"
+    },
+    "overview.json": {
+      "bytes": 567093,
+      "sha256": "34aab43d30b3b8f81e345c0b5c718bcca195c117642298e4b30bbab2051d4ec4"
+    },
+    "segments.json": {
+      "bytes": 22286,
+      "sha256": "a0fbdcdf54a30c3021b6c8b72282cddb61efd574215fa533732589ec55ea3c24"
+    },
+    "simulator.json": {
+      "bytes": 253937,
+      "sha256": "24a338142957b53a6ab9a5be6ee45a36f4eb7a8b352b69cc3db72b4b255387eb"
+    }
+  },
+  "generated_at_utc": "2026-11-16T04:27:48.653267+00:00",
+  "limitations": [
+    "Synthetic generator truth is available for evaluation only, never model fitting.",
+    "Three channels overlap and co-vary; individual effects and shapes may be weakly identified.",
+    "Holdout predictions condition on planned spend and pre-outcome market context.",
+    "Normal observation noise approximates rounded nonnegative integer sales units.",
+    "Model-based contributions are assumption dependent, not experiment-validated incrementality.",
+    "Prior sensitivity reweights one population prior only; poor importance ESS would require an independent refit.",
+    "Partial pooling misses some true effects; no pooling has better coefficient recovery in this run.",
+    "Simulator baseline replays holdout weeks 109-120, conditional on fixed inputs."
+  ],
+  "lineage": {
+    "etl_manifest_sha256": "a0de49cb1ed5855fb1156807af399054ae5c255e6af70c0906e669766e82be5d",
+    "etl_version": "m2b-1",
+    "evaluation_sha256": "f3ee7aa6e789faf41e986ce1bd2d235326ce4f908c4664ad7304c13a3f218972",
+    "fit_manifest_sha256": "4bf0243b328871f99b67a7d87aa8f2a003b5dbb904334b68389197794037dba4",
+    "model_input_sha256": "3789d2ca5a41317de5566097b4be4969aceca0cd83a216cb1de4e4dc3c0a188d",
+    "model_version": "m3-1",
+    "posterior_sha256": {
+      "complete": "dc36f5ef62f3b3cacf1ef5b6836c4edf54ae9345b8658b6c2bf4ccdb02ae3b66",
+      "none": "d0f712fcec689f905ea612ca1e7e80c85a6365df23742deeb0989243c56eed92",
+      "partial": "86affb68198e3a9f76e7105805cee659b09026b4daf2365aa238a1140cf328af"
+    },
+    "source_manifest_sha256": "4f601bc597a370e2dfab4e8ab2e637070a6bc14cc9dd312f1e931aa20c35ac9d",
+    "source_schema_sha256": "a3afbf70a8d6c7e7dc85b2d8464a690ffa4f11de7616a4bc38d46c687acd67cd"
+  },
+  "models": [
+    "complete",
+    "none",
+    "partial"
+  ],
+  "reference_model": "partial",
+  "reference_model_note": "Partial pooling is the pedagogical reference, not the best coefficient-recovery model in this run.",
+  "schema_version": "m4-2",
+  "segments": [
+    "northeast",
+    "southeast",
+    "great_lakes",
+    "south_central",
+    "mountain_west",
+    "pacific_coast"
+  ],
+  "units": {
+    "planned_spend": "USD",
+    "sales": "units",
+    "time": "Monday-start week"
+  }
+}
