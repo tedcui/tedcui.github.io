@@ -14,23 +14,23 @@
   "disclosure": "Synthetic data \u00b7 illustrative model results",
   "files": {
     "contributions.json": {
-      "bytes": 856684,
-      "sha256": "869f151bd02ef84976c0d172a344828cb963a73fdffe17338dcb8a3231bcbe0e"
+      "bytes": 822043,
+      "sha256": "321229e000dbb0af74da277cc28c3117c88705cca48dc26b8cf5bfe87b201e22"
     },
     "overview.json": {
-      "bytes": 567093,
-      "sha256": "34aab43d30b3b8f81e345c0b5c718bcca195c117642298e4b30bbab2051d4ec4"
+      "bytes": 545595,
+      "sha256": "61b559d9dd5526590bdbb4f9879b19563a2c2da1ba00aaa64f19b197bde6a254"
     },
     "segments.json": {
-      "bytes": 22286,
-      "sha256": "a0fbdcdf54a30c3021b6c8b72282cddb61efd574215fa533732589ec55ea3c24"
+      "bytes": 21439,
+      "sha256": "03e6b818886b5cb264e8eaad00b237e57b943d0b71db973f225d796709c59b40"
     },
     "simulator.json": {
-      "bytes": 253937,
-      "sha256": "24a338142957b53a6ab9a5be6ee45a36f4eb7a8b352b69cc3db72b4b255387eb"
+      "bytes": 242415,
+      "sha256": "a8ace639da4d48156111245b8856f752bfbb4845b1ca5ab421a87a9f517e5a68"
     }
   },
-  "generated_at_utc": "2026-11-16T04:27:48.653267+00:00",
+  "generated_at_utc": "2026-11-16T15:20:04.742173+00:00",
   "limitations": [
     "Synthetic generator truth is available for evaluation only, never model fitting.",
     "Three channels overlap and co-vary; individual effects and shapes may be weakly identified.",
