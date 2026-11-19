@@ -22,7 +22,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <div className="project-card__copy">
           <h3>{project.cardTitle}</h3>
           <p>{project.cardSummary}</p>
-          {project.aiLayer && (
+          {project.aiLayer && !isBayesianMmm && (
             <span className={`project-card__ai-badge project-card__ai-badge--${project.aiLayer.status}`}>
               <span className="project-card__ai-icon" aria-hidden="true">
                 <Sparkles size={14} />
@@ -37,14 +37,25 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </span>
           )}
         </div>
-        <div className="project-card__metrics">
-          {project.metrics.slice(0, 2).map((metric) => (
-            <div key={metric.label}>
-              <strong>{metric.value}</strong>
-              <span>{metric.label}</span>
-            </div>
-          ))}
-        </div>
+        {project.decisionLens ? (
+          <dl className="project-card__decision-lens" aria-label="Problem, method, and decision value">
+            {project.decisionLens.map((item) => (
+              <div key={item.label}>
+                <dt>{item.label}</dt>
+                <dd>{item.text}</dd>
+              </div>
+            ))}
+          </dl>
+        ) : (
+          <div className="project-card__metrics">
+            {project.metrics.slice(0, 2).map((metric) => (
+              <div key={metric.label}>
+                <strong>{metric.value}</strong>
+                <span>{metric.label}</span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="project-card__signal" aria-hidden="true">

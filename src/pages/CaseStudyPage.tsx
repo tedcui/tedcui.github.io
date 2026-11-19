@@ -4,7 +4,7 @@ import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 import { siteConfig, sitePath } from "../config/site";
 import { projects } from "../data/projects";
-import type { Project } from "../types";
+import type { AILayer, Project } from "../types";
 
 type CaseStudyPageProps = {
   project: Project;
@@ -46,19 +46,31 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
               <p className="eyebrow">{project.number} / {project.category}</p>
               <h1 id="case-title">{project.title}</h1>
               <p className="case-summary">{project.summary}</p>
+              {showMmmDashboard && <p className="case-provenance">Public demonstration using synthetic data</p>}
               <ul className="tag-list case-tags" aria-label="Methods used">
                 {project.methods.map((method) => <li key={method}>{method}</li>)}
               </ul>
             </div>
-            <div className="case-metrics" aria-label="Project results">
-              {project.metrics.map((metric) => (
-                <div key={metric.label}>
-                  <strong>{metric.value}</strong>
-                  <span>{metric.label}</span>
-                  {metric.detail && <small>{metric.detail}</small>}
-                </div>
-              ))}
-            </div>
+            {project.decisionLens ? (
+              <dl className="case-decision-lens" aria-label="Problem, method, and decision value">
+                {project.decisionLens.map((item) => (
+                  <div key={item.label}>
+                    <dt>{item.label}</dt>
+                    <dd>{item.text}</dd>
+                  </div>
+                ))}
+              </dl>
+            ) : (
+              <div className="case-metrics" aria-label="Project results">
+                {project.metrics.map((metric) => (
+                  <div key={metric.label}>
+                    <strong>{metric.value}</strong>
+                    <span>{metric.label}</span>
+                    {metric.detail && <small>{metric.detail}</small>}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </section>
 
@@ -167,11 +179,11 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
             <div className="section-heading section-heading--split">
               <div>
                 <p className="eyebrow">Interactive decision lab</p>
-                <h2 id="mmm-demo-title">Inspect the posterior, then test a plan.</h2>
+                <h2 id="mmm-demo-title">Explore a budget decision.</h2>
               </div>
               <p>
-                The public dashboard connects model evaluation to planning without hiding uncertainty,
-                pooling assumptions, or spending-support warnings.
+                Start with demand and spend, see how the model attributes response, then compare
+                a proposed budget with the current plan and the uncertainty around both.
               </p>
             </div>
 
@@ -182,8 +194,8 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
                 </span>
                 <h3>Bayesian MMM Decision Lab</h3>
                 <p>
-                  Explore six regions across 120 weeks, compare three Bayesian pooling structures,
-                  decompose modeled contribution, and run paired-draw 12-week spend scenarios.
+                  Explore market differences, compare modeling assumptions, and adjust channel spend.
+                  The simulator shows expected demand changes and flags plans beyond the observed spend range.
                 </p>
                 <a
                   className="button button--primary"
@@ -199,26 +211,26 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
               <ul className="mmm-demo-panel__views" aria-label="Decision lab views">
                 <li>
                   <strong>Overview</strong>
-                  <span>Observed and expected sales, planned spend, holdout error, and predictive intervals.</span>
+                  <span>See how demand, marketing spend, and modeled expectations move over time.</span>
                 </li>
                 <li>
                   <strong>Decomposition</strong>
-                  <span>Baseline and modeled channel contribution with credible intervals.</span>
+                  <span>Separate the modeled baseline from channel response and examine uncertainty.</span>
                 </li>
                 <li>
                   <strong>Region comparison</strong>
-                  <span>Complete, no, and partial pooling effects shown side by side.</span>
+                  <span>See where market response differs and how model assumptions affect the estimate.</span>
                 </li>
                 <li>
                   <strong>Decision simulator</strong>
-                  <span>Regional spend scenarios and bounded allocation under observed-support caps.</span>
+                  <span>Compare spend plans, expected demand, uncertainty, and support warnings.</span>
                 </li>
               </ul>
             </div>
 
             <p className="dashboard-disclaimer">
-              This educational demonstration uses synthetic data. Contributions are model-based,
-              assumption-dependent estimates—not experimentally identified lift or a forecast guarantee.
+              This educational demonstration uses synthetic data. Its modeled contributions and
+              scenarios illustrate a planning workflow; they are not measured business results.
             </p>
           </section>
         )}
@@ -246,75 +258,7 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
           </ol>
         </section>
 
-        {project.aiLayer && (
-          <section
-            id="ai-layer"
-            className={`section shell case-ai-layer case-ai-layer--${project.aiLayer.status}`}
-            aria-labelledby="ai-layer-title"
-          >
-            <div className="section-heading section-heading--split">
-              <div>
-                <p className="eyebrow">Applied AI layer</p>
-                <span className={`ai-status ai-status--${project.aiLayer.status}`}>
-                  <span className="ai-status__icon" aria-hidden="true">
-                    <Sparkles size={14} />
-                  </span>
-                  {project.aiLayer.status === "live" ? "Live AI-assisted demo" : "Planned AI extension"}
-                </span>
-                <h2 id="ai-layer-title">{project.aiLayer.title}</h2>
-              </div>
-              <p>{project.aiLayer.summary}</p>
-            </div>
-
-            <div className="ai-layer-grid">
-              <article>
-                <div className="ai-layer-grid__topline">
-                  <span>01 / Grounding inputs</span>
-                  <Database size={20} aria-hidden="true" />
-                </div>
-                <h3>What the AI can see</h3>
-                <ul>
-                  {project.aiLayer.inputs.map((item) => <li key={item}>{item}</li>)}
-                </ul>
-              </article>
-              <article>
-                <div className="ai-layer-grid__topline">
-                  <span>02 / Assistance</span>
-                  <Sparkles size={20} aria-hidden="true" />
-                </div>
-                <h3>What it helps explain</h3>
-                <ul>
-                  {project.aiLayer.assistance.map((item) => <li key={item}>{item}</li>)}
-                </ul>
-              </article>
-              <article>
-                <div className="ai-layer-grid__topline">
-                  <span>03 / Guardrails</span>
-                  <CircleAlert size={20} aria-hidden="true" />
-                </div>
-                <h3>What keeps it bounded</h3>
-                <ul>
-                  {project.aiLayer.guardrails.map((item) => <li key={item}>{item}</li>)}
-                </ul>
-              </article>
-            </div>
-
-            <ol className="ai-layer-flow" aria-label="AI-assisted decision flow">
-              {project.aiLayer.flow.map((step, index) => (
-                <li key={step}>
-                  <span>0{index + 1}</span>
-                  <strong>{step}</strong>
-                  {index < project.aiLayer!.flow.length - 1 && <ArrowRight size={17} aria-hidden="true" />}
-                </li>
-              ))}
-            </ol>
-
-            <p className="ai-layer-note">
-              <CircleAlert size={17} aria-hidden="true" />
-              <span>{project.aiLayer.note}</span>
-            </p>
-          </section>
-        )}
+        {project.aiLayer?.status === "live" && <AILayerSection aiLayer={project.aiLayer} />}
 
         <section className="section shell case-content-grid">
           <div className="case-main-column">
@@ -335,7 +279,7 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
 
             <article className="case-block">
               <p className="eyebrow">What shipped</p>
-              <h2>Analysis made operational.</h2>
+              <h2>{showMmmDashboard ? "A complete decision workflow." : "Analysis made operational."}</h2>
               <ul className="check-list">
                 {project.shipped.map((item) => (
                   <li key={item}><Check size={17} aria-hidden="true" /><span>{item}</span></li>
@@ -367,8 +311,8 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
         </section>
 
         <section className="section shell impact-panel" aria-labelledby="impact-title">
-          <p className="eyebrow">{showMmmDashboard ? "Verified outcomes" : "Measured impact"}</p>
-          <h2 id="impact-title">{showMmmDashboard ? "What the lab demonstrates." : "What changed."}</h2>
+          <p className="eyebrow">{showMmmDashboard ? "Decision value" : "Measured impact"}</p>
+          <h2 id="impact-title">{showMmmDashboard ? "What this helps a team do." : "What changed."}</h2>
           <div className="impact-grid">
             {project.impact.map((item, index) => (
               <article key={item}>
@@ -378,6 +322,8 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
             ))}
           </div>
         </section>
+
+        {project.aiLayer?.status === "planned" && <AILayerSection aiLayer={project.aiLayer} />}
 
         <section className="shell next-case">
           <p className="eyebrow">Next case study</p>
@@ -390,5 +336,77 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
       </main>
       <SiteFooter />
     </>
+  );
+}
+
+function AILayerSection({ aiLayer }: { aiLayer: AILayer }) {
+  return (
+    <section
+      id="ai-layer"
+      className={`section shell case-ai-layer case-ai-layer--${aiLayer.status}`}
+      aria-labelledby="ai-layer-title"
+    >
+      <div className="section-heading section-heading--split">
+        <div>
+          <p className="eyebrow">Applied AI layer</p>
+          <span className={`ai-status ai-status--${aiLayer.status}`}>
+            <span className="ai-status__icon" aria-hidden="true">
+              <Sparkles size={14} />
+            </span>
+            {aiLayer.status === "live" ? "Live AI-assisted demo" : "Planned AI extension"}
+          </span>
+          <h2 id="ai-layer-title">{aiLayer.title}</h2>
+        </div>
+        <p>{aiLayer.summary}</p>
+      </div>
+
+      <div className="ai-layer-grid">
+        <article>
+          <div className="ai-layer-grid__topline">
+            <span>01 / Grounding inputs</span>
+            <Database size={20} aria-hidden="true" />
+          </div>
+          <h3>What the AI can see</h3>
+          <ul>
+            {aiLayer.inputs.map((item) => <li key={item}>{item}</li>)}
+          </ul>
+        </article>
+        <article>
+          <div className="ai-layer-grid__topline">
+            <span>02 / Assistance</span>
+            <Sparkles size={20} aria-hidden="true" />
+          </div>
+          <h3>What it helps explain</h3>
+          <ul>
+            {aiLayer.assistance.map((item) => <li key={item}>{item}</li>)}
+          </ul>
+        </article>
+        <article>
+          <div className="ai-layer-grid__topline">
+            <span>03 / Guardrails</span>
+            <CircleAlert size={20} aria-hidden="true" />
+          </div>
+          <h3>What keeps it bounded</h3>
+          <ul>
+            {aiLayer.guardrails.map((item) => <li key={item}>{item}</li>)}
+          </ul>
+        </article>
+      </div>
+
+      <ol className="ai-layer-flow" aria-label="AI-assisted decision flow">
+        {aiLayer.flow.map((step, index) => (
+          <li key={step}>
+            <span>0{index + 1}</span>
+            <strong>{step}</strong>
+            {index < aiLayer.flow.length - 1 && <ArrowRight size={17} aria-hidden="true" />}
+          </li>
+        ))}
+      </ol>
+
+      <p className="ai-layer-note">
+        <CircleAlert size={17} aria-hidden="true" />
+        <span>{aiLayer.note}</span>
+      </p>
+    </section>
   );
 }

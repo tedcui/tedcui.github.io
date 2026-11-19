@@ -4,6 +4,11 @@ export type Metric = {
   detail?: string;
 };
 
+export type DecisionLens = {
+  label: string;
+  text: string;
+};
+
 export type AILayer = {
   status: "live" | "planned";
   badge: string;
@@ -26,6 +31,7 @@ export type Project = {
   cardSummary: string;
   accent: "blue" | "violet" | "cyan" | "amber";
   metrics: Metric[];
+  decisionLens?: DecisionLens[];
   methods: string[];
   decision: string;
   context: string;

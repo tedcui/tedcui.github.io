@@ -117,69 +117,70 @@ export const projects: Project[] = [
     slug: "bayesian-mmm",
     number: "02",
     category: "Marketing Science",
-    title: "Bayesian MMM Decision Lab",
-    cardTitle: "Bayesian MMM Decision Lab",
+    title: "From Marketing Mix to Budget Decisions",
+    cardTitle: "Bayesian Marketing Mix Modeling",
     summary:
-      "A reproducible marketing mix system that compares Bayesian pooling strategies, validates uncertainty, and turns posterior draws into an interactive regional planning simulator.",
+      "When campaigns overlap and markets respond differently, a single attribution number is a poor guide to investment. I built a Bayesian marketing mix workflow that connects trustworthy data, uncertainty-aware estimates, and spend scenarios to a clearer budget conversation.",
     cardSummary:
-      "From source-aligned synthetic data to three fitted Bayesian models, a four-view dashboard, and a 12-week regional budget simulator.",
+      "Helping marketing teams understand where spend may work, how response differs by market, and what evidence supports a budget change.",
     accent: "violet",
-    metrics: [
-      { value: "4.04%", label: "holdout WAPE", detail: "Partial-pooling model" },
-      { value: "3", label: "pooling models", detail: "Complete, none, partial" },
-      { value: "4", label: "dashboard views", detail: "Live decision lab" }
+    metrics: [],
+    decisionLens: [
+      { label: "The problem", text: "Overlapping campaigns obscure channel and market response." },
+      { label: "The method", text: "Bayesian MMM, reliable data pipelines, and scenario modeling." },
+      { label: "The value", text: "Compare spend choices with uncertainty and limits in view." }
     ],
-    methods: ["PyMC", "Hierarchical Bayes", "Adstock + Saturation", "Posterior Evaluation", "Scenario Optimization"],
+    methods: ["PyMC", "Hierarchical Bayesian MMM", "Data Engineering", "Adstock + Saturation", "Scenario Planning"],
     decision:
-      "How should regional marketing plans change when channel effects are uncertain and campaign signals overlap?",
+      "Where might a team shift marketing spend across channels and regions, and how much confidence should it place in that choice?",
     context:
-      "A source-aligned synthetic retail panel spanning six regions and 120 weeks, reconciled from transaction, store, product, marketing-plan, and market-context data into 720 segment-week observations.",
+      "Marketing investment decisions are difficult when promotions run together, results vary by market, and historical data cannot cleanly isolate each effect. I built a synthetic retail environment so the full decision workflow can be inspected publicly.",
     role:
-      "Designed and built the full system: source simulation, ETL and lineage, three Bayesian pooling specifications, posterior evaluation, versioned browser exports, dashboard, and decision simulator.",
+      "Owned the demonstration end to end: source design, quality checked ETL, Bayesian model specification and evaluation, dashboard interpretation, and an interactive budget simulator.",
     constraints: [
-      "Campaign spend is correlated across channels, limiting causal identification",
-      "Regional effects have uneven signal and require explicit pooling and uncertainty",
-      "Scenarios must preserve adstock history and flag spending outside observed support"
+      "Campaigns move together, making individual channel effects hard to identify",
+      "Market response varies, but some regions have less information than others",
+      "Proposed budgets can exceed the spending patterns observed in the data"
     ],
     diagram: [
-      "Source simulation",
-      "Validated source tables",
-      "Segment-week mart",
-      "Three Bayesian models",
-      "Evaluation + exports",
-      "Dashboard + simulator"
+      "Transaction + spend inputs",
+      "Validated market data",
+      "Bayesian response model",
+      "Model checks",
+      "Scenario comparison",
+      "Budget discussion"
     ],
     approach: [
-      "Generated source-aligned synthetic retail tables with explicit schemas, lineage, quality checks, and exact unit reconciliation.",
-      "Built a leakage-safe 720-row regional mart with 100 training weeks and a fixed 20-week conditional holdout.",
-      "Fit complete-, no-, and partial-pooling models with shared geometric adstock, Hill saturation, controls, and a Normal likelihood.",
-      "Evaluated convergence, holdout error, known-truth recovery, and prior sensitivity before exporting hash-verified browser payloads.",
-      "Implemented a four-view dashboard and paired-draw 12-week simulator with a bounded local budget-allocation search."
+      "Created synthetic transaction, product, store, spend, and market-context sources, then built a reconciled regional modeling layer with explicit quality checks and lineage.",
+      "Fit Bayesian models that allow response to differ by region while sharing information where evidence is thin. Adstock and saturation represent delayed and diminishing media response.",
+      "Compared pooling assumptions and checked predictive error, posterior diagnostics, and recovery against known synthetic effects before using estimates in planning views.",
+      "Translated posterior draws into channel contribution, market comparisons, and a simulator that holds other conditions fixed while a user explores spend changes.",
+      "Added spending-support warnings and a bounded allocation search so scenario results prompt a discussion rather than imply an automatic optimum."
     ],
     rationale:
-      "Comparing pooling structures makes the modeling trade-off visible: complete pooling can hide regional variation, no pooling can overfit sparse signals, and partial pooling shares information while retaining heterogeneity. Posterior draws carry that uncertainty into every contribution and planning scenario.",
+      "A budget recommendation needs more than a point estimate. Hierarchical Bayes can share evidence across regions without assuming they behave identically; posterior scenarios show the range of plausible responses. Comparing model structures and observed spend support helps reveal where the data cannot justify a confident move.",
     validation: [
-      "The partial-pooling fit finished with 0 divergences, max R-hat 1.0043, and minimum bulk ESS 1,146.4.",
-      "Conditional holdout WAPE was 4.040%; its 90% response intervals covered 15 of 18 known synthetic effects, versus 17 of 18 for no pooling.",
-      "Release checks passed 38 Python and 18 frontend tests plus typecheck, build, schema, hash, and artifact validation."
+      "Compared complete, no, and partial pooling; evaluated convergence, holdout error, and recovery of the known synthetic effects.",
+      "Kept expected outcome uncertainty separate from future observation uncertainty and checked contribution reconciliation.",
+      "Validated source lineage, export integrity, and simulator parity so the dashboard uses the evaluated model outputs."
     ],
     shipped: [
-      "Reproducible source simulation, ETL pipeline, notebooks, data contracts, and lineage reports",
-      "Three PyMC posterior fits with evaluation artifacts and versioned browser exports",
-      "Live four-view analytical dashboard with regional decomposition and model comparison",
-      "12-week scenario simulator with support warnings and bounded budget allocation"
+      "Reproducible synthetic source and ETL pipeline with data contracts, lineage, and quality checks",
+      "PyMC marketing mix models with regional response, carryover, saturation, and posterior diagnostics",
+      "Live dashboard for demand, channel contribution, and regional model comparisons",
+      "Interactive spend simulator with uncertainty, support warnings, and bounded budget allocation"
     ],
     impact: [
-      "Turned a complex MMM workflow into a public, inspectable reference from source generation through decision simulation.",
-      "Made pooling assumptions and recovery trade-offs visible instead of presenting one model as unquestioned truth.",
-      "Delivered uncertainty-aware regional planning scenarios that preserve posterior pairing, lineage, and support warnings."
+      "Frame a budget discussion around which channels and markets appear responsive, with uncertainty attached to the estimates.",
+      "Compare a current plan with alternatives before committing spend, while seeing when a proposal reaches beyond historical support.",
+      "Trace a planning recommendation back through model assumptions, diagnostics, and data quality checks."
     ],
     limitations: [
-      "All data are synthetic and the fixed data-generating process is simpler than real observational marketing systems.",
-      "Channel contributions are model-based and assumption-dependent, not experimentally identified causal lift.",
-      "Holdout predictions condition on known spend and context; they are not ex-ante forecasts.",
-      "The budget search is bounded and local, optimizes expected units rather than profit, and does not claim a global optimum.",
-      "The AI model copilot is a planned extension and is not included among the shipped project outcomes.",
+      "The public lab uses synthetic data; it does not report realized commercial impact.",
+      "Modeled channel contributions are sensitive to assumptions and do not establish causal lift.",
+      "Scenario comparisons hold other conditions fixed and are not guaranteed forecasts.",
+      "The allocation search is local and optimizes modeled units, not profit or a global optimum.",
+      "The AI model copilot is a planned extension, not a shipped feature."
     ],
     aiLayer: {
       status: "planned",
