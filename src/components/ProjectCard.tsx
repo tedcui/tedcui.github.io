@@ -8,6 +8,7 @@ type ProjectCardProps = {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const isHealthcare = project.slug === "healthcare-ml";
+  const isBayesianMmm = project.slug === "bayesian-mmm";
   const [aiFeature, aiAvailability] = project.aiLayer?.badge.split(" · ") ?? [];
 
   return (
@@ -61,6 +62,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
         {isHealthcare && (
           <a className="project-action project-action--demo" href={sitePath("work/healthcare-ml/#interactive-demos")}>
             Explore 2 connected demos <ArrowRight size={17} aria-hidden="true" />
+          </a>
+        )}
+        {isBayesianMmm && (
+          <a className="project-action project-action--demo" href={sitePath("work/bayesian-mmm/#decision-lab")}>
+            Explore live decision lab
           </a>
         )}
       </div>

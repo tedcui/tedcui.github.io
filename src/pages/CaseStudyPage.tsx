@@ -13,7 +13,8 @@ type CaseStudyPageProps = {
 export function CaseStudyPage({ project }: CaseStudyPageProps) {
   const projectIndex = projects.findIndex((item) => item.slug === project.slug);
   const nextProject = projects[(projectIndex + 1) % projects.length];
-  const showDashboard = project.slug === "healthcare-ml";
+  const showHealthcareDemos = project.slug === "healthcare-ml";
+  const showMmmDashboard = project.slug === "bayesian-mmm";
 
   useEffect(() => {
     const scrollToHash = () => {
@@ -76,7 +77,7 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
           </article>
         </section>
 
-        {showDashboard && (
+        {showHealthcareDemos && (
           <section id="interactive-demos" className="section shell demo-suite" aria-labelledby="demo-suite-title">
             <div className="section-heading section-heading--split">
               <div>
@@ -161,13 +162,78 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
           </section>
         )}
 
+        {showMmmDashboard && (
+          <section id="decision-lab" className="section shell demo-suite mmm-demo" aria-labelledby="mmm-demo-title">
+            <div className="section-heading section-heading--split">
+              <div>
+                <p className="eyebrow">Interactive decision lab</p>
+                <h2 id="mmm-demo-title">Inspect the posterior, then test a plan.</h2>
+              </div>
+              <p>
+                The public dashboard connects model evaluation to planning without hiding uncertainty,
+                pooling assumptions, or spending-support warnings.
+              </p>
+            </div>
+
+            <div className="mmm-demo-panel">
+              <div className="mmm-demo-panel__copy">
+                <span className="mmm-demo-panel__status">
+                  <i aria-hidden="true" /> Live public dashboard
+                </span>
+                <h3>Bayesian MMM Decision Lab</h3>
+                <p>
+                  Explore six regions across 120 weeks, compare three Bayesian pooling structures,
+                  decompose modeled contribution, and run paired-draw 12-week spend scenarios.
+                </p>
+                <a
+                  className="button button--primary"
+                  href={siteConfig.bayesianMmmDashboard}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open live decision lab
+                  <span className="sr-only">(opens in a new tab)</span>
+                </a>
+              </div>
+
+              <ul className="mmm-demo-panel__views" aria-label="Decision lab views">
+                <li>
+                  <strong>Overview</strong>
+                  <span>Observed and expected sales, planned spend, holdout error, and predictive intervals.</span>
+                </li>
+                <li>
+                  <strong>Decomposition</strong>
+                  <span>Baseline and modeled channel contribution with credible intervals.</span>
+                </li>
+                <li>
+                  <strong>Region comparison</strong>
+                  <span>Complete, no, and partial pooling effects shown side by side.</span>
+                </li>
+                <li>
+                  <strong>Decision simulator</strong>
+                  <span>Regional spend scenarios and bounded allocation under observed-support caps.</span>
+                </li>
+              </ul>
+            </div>
+
+            <p className="dashboard-disclaimer">
+              This educational demonstration uses synthetic data. Contributions are model-based,
+              assumption-dependent estimates—not experimentally identified lift or a forecast guarantee.
+            </p>
+          </section>
+        )}
+
         <section className="section shell case-architecture" aria-labelledby="architecture-title">
           <div className="section-heading section-heading--split">
             <div>
               <p className="eyebrow">System architecture</p>
               <h2 id="architecture-title">From signal to decision.</h2>
             </div>
-            <p>Sanitized workflow showing how raw inputs become an operational action.</p>
+            <p>
+              {showMmmDashboard
+                ? "Reproducible path from source-aligned synthetic data to posterior-tested planning decisions."
+                : "Sanitized workflow showing how raw inputs become an operational action."}
+            </p>
           </div>
           <ol className="architecture-flow">
             {project.diagram.map((step, index) => (
@@ -301,8 +367,8 @@ export function CaseStudyPage({ project }: CaseStudyPageProps) {
         </section>
 
         <section className="section shell impact-panel" aria-labelledby="impact-title">
-          <p className="eyebrow">Measured impact</p>
-          <h2 id="impact-title">What changed.</h2>
+          <p className="eyebrow">{showMmmDashboard ? "Verified outcomes" : "Measured impact"}</p>
+          <h2 id="impact-title">{showMmmDashboard ? "What the lab demonstrates." : "What changed."}</h2>
           <div className="impact-grid">
             {project.impact.map((item, index) => (
               <article key={item}>

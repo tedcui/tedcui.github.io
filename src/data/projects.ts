@@ -116,99 +116,102 @@ export const projects: Project[] = [
   {
     slug: "bayesian-mmm",
     number: "02",
-    category: "Pricing + Marketing",
-    title: "Bayesian MMM + Price Elasticity",
-    cardTitle: "Bayesian MMM + Price Elasticity",
+    category: "Marketing Science",
+    title: "Bayesian MMM Decision Lab",
+    cardTitle: "Bayesian MMM Decision Lab",
     summary:
-      "A connected modeling system for understanding price sensitivity, customer heterogeneity, and cross-channel marketing contribution, with a planned AI copilot for interpreting results.",
+      "A reproducible marketing mix system that compares Bayesian pooling strategies, validates uncertainty, and turns posterior draws into an interactive regional planning simulator.",
     cardSummary:
-      "Turning more than 100 million loyalty transactions into pricing and marketing decisions, with an AI interpretation layer planned.",
+      "From source-aligned synthetic data to three fitted Bayesian models, a four-view dashboard, and a 12-week regional budget simulator.",
     accent: "violet",
     metrics: [
-      { value: "+2.3%", label: "revenue lift", detail: "Portfolio outcome" },
-      { value: "+4.5%", label: "marketing ROI", detail: "Portfolio outcome" },
-      { value: "6", label: "customer segments", detail: "Actionable groups" }
+      { value: "4.04%", label: "holdout WAPE", detail: "Partial-pooling model" },
+      { value: "3", label: "pooling models", detail: "Complete, none, partial" },
+      { value: "4", label: "dashboard views", detail: "Live decision lab" }
     ],
-    methods: ["Bayesian Modeling", "Hierarchical Models", "Scenario Analysis", "AI Copilot (Planned)"],
+    methods: ["PyMC", "Hierarchical Bayes", "Adstock + Saturation", "Posterior Evaluation", "Scenario Optimization"],
     decision:
-      "How should pricing and marketing investment change across customer segments?",
+      "How should regional marketing plans change when channel effects are uncertain and campaign signals overlap?",
     context:
-      "Large-scale loyalty data with more than 100 million transactions, heterogeneous customer behavior, and overlapping pricing and media effects.",
+      "A source-aligned synthetic retail panel spanning six regions and 120 weeks, reconciled from transaction, store, product, marketing-plan, and market-context data into 720 segment-week observations.",
     role:
-      "Designed a connected analytical workflow from base-volume modeling through segmentation, elasticity estimation, and marketing scenario analysis.",
+      "Designed and built the full system: source simulation, ETL and lineage, three Bayesian pooling specifications, posterior evaluation, versioned browser exports, dashboard, and decision simulator.",
     constraints: [
-      "Price response varied materially across customer groups",
-      "Promotions and media activity created overlapping signals",
-      "Outputs needed to support concrete planning scenarios rather than a single coefficient"
+      "Campaign spend is correlated across channels, limiting causal identification",
+      "Regional effects have uneven signal and require explicit pooling and uncertainty",
+      "Scenarios must preserve adstock history and flag spending outside observed support"
     ],
     diagram: [
-      "Transaction data",
-      "Base volume",
-      "Hierarchical elasticity",
-      "Customer segments",
-      "Bayesian MMM",
-      "Pricing + media decisions"
+      "Source simulation",
+      "Validated source tables",
+      "Segment-week mart",
+      "Three Bayesian models",
+      "Evaluation + exports",
+      "Dashboard + simulator"
     ],
     approach: [
-      "Established a base-volume view before attributing incremental effects.",
-      "Estimated hierarchical price elasticities to retain segment-level differences while sharing information.",
-      "Used K-means to develop six actionable customer groups.",
-      "Connected Bayesian marketing mix estimates to scenario analysis for spend and pricing decisions."
+      "Generated source-aligned synthetic retail tables with explicit schemas, lineage, quality checks, and exact unit reconciliation.",
+      "Built a leakage-safe 720-row regional mart with 100 training weeks and a fixed 20-week conditional holdout.",
+      "Fit complete-, no-, and partial-pooling models with shared geometric adstock, Hill saturation, controls, and a Normal likelihood.",
+      "Evaluated convergence, holdout error, known-truth recovery, and prior sensitivity before exporting hash-verified browser payloads.",
+      "Implemented a four-view dashboard and paired-draw 12-week simulator with a bounded local budget-allocation search."
     ],
     rationale:
-      "A hierarchical Bayesian structure was suited to uneven data density and heterogeneous response. It supported partial pooling, explicit uncertainty, and planning scenarios that were more decision-ready than isolated point estimates.",
+      "Comparing pooling structures makes the modeling trade-off visible: complete pooling can hide regional variation, no pooling can overfit sparse signals, and partial pooling shares information while retaining heterogeneity. Posterior draws carry that uncertainty into every contribution and planning scenario.",
     validation: [
-      "Model review covered stability of channel and price-response estimates across plausible specifications.",
-      "Segment outputs were assessed for both analytical separation and business actionability.",
-      "Confidential measurement details are omitted; the public figures should be read as a sanitized impact summary."
+      "The partial-pooling fit finished with 0 divergences, max R-hat 1.0043, and minimum bulk ESS 1,146.4.",
+      "Conditional holdout WAPE was 4.040%; its 90% response intervals covered 15 of 18 known synthetic effects, versus 17 of 18 for no pooling.",
+      "Release checks passed 38 Python and 18 frontend tests plus typecheck, build, schema, hash, and artifact validation."
     ],
     shipped: [
-      "Segment-level price-response estimates",
-      "Cross-channel contribution analysis",
-      "Scenario outputs connecting pricing and media choices to expected outcomes"
+      "Reproducible source simulation, ETL pipeline, notebooks, data contracts, and lineage reports",
+      "Three PyMC posterior fits with evaluation artifacts and versioned browser exports",
+      "Live four-view analytical dashboard with regional decomposition and model comparison",
+      "12-week scenario simulator with support warnings and bounded budget allocation"
     ],
     impact: [
-      "Supported a reported 2.3% revenue lift.",
-      "Supported a reported 4.5% improvement in marketing ROI.",
-      "Created six customer segments usable for differentiated action."
+      "Turned a complex MMM workflow into a public, inspectable reference from source generation through decision simulation.",
+      "Made pooling assumptions and recovery trade-offs visible instead of presenting one model as unquestioned truth.",
+      "Delivered uncertainty-aware regional planning scenarios that preserve posterior pairing, lineage, and support warnings."
     ],
     limitations: [
-      "Marketing mix results depend on the quality and variation of historical inputs.",
-      "Scenario outputs are estimates, not guarantees of future performance.",
+      "All data are synthetic and the fixed data-generating process is simpler than real observational marketing systems.",
+      "Channel contributions are model-based and assumption-dependent, not experimentally identified causal lift.",
+      "Holdout predictions condition on known spend and context; they are not ex-ante forecasts.",
+      "The budget search is bounded and local, optimizes expected units rather than profit, and does not claim a global optimum.",
       "The AI model copilot is a planned extension and is not included among the shipped project outcomes.",
-      "The public case study does not disclose company, channel, or customer-level data."
     ],
     aiLayer: {
       status: "planned",
       badge: "AI model copilot · planned",
-      title: "A model copilot for interpreting uncertainty and impact.",
+      title: "A grounded copilot for explaining posterior evidence.",
       summary:
-        "A planned conversational layer would help stakeholders understand channel contribution, segment-level elasticity, uncertainty, and scenario results without reducing the Bayesian model to a single point estimate.",
+        "A planned conversational layer would help stakeholders compare pooling strategies, understand channel contribution and uncertainty, and interpret simulator results without reducing the model to a single point estimate.",
       inputs: [
-        "Posterior summaries and channel contribution",
-        "Segment-level elasticity estimates",
-        "Scenario tables, metric glossary, and model documentation"
+        "Versioned posterior summaries and channel decomposition",
+        "Pooling comparison, holdout, recovery, and diagnostic metrics",
+        "Scenario outputs, metric definitions, and model documentation"
       ],
       assistance: [
-        "Answers natural-language questions about model results",
-        "Explains credible intervals and decision uncertainty",
-        "Compares pricing and media scenarios",
+        "Compares complete, no, and partial pooling",
+        "Explains credible versus predictive uncertainty",
+        "Interprets regional spend scenarios and support warnings",
         "Separates model evidence from business recommendations"
       ],
       guardrails: [
-        "Citations back to model outputs and definitions",
-        "Uncertainty preserved in every explanation",
-        "No unsupported causal claims",
+        "Citations back to exported values and definitions",
+        "Credible and predictive intervals kept distinct",
+        "No unsupported causal or forecast claims",
         "Stakeholder approval before planning decisions"
       ],
       flow: [
-        "Model outputs + documentation",
+        "Exports + documentation",
         "RAG-grounded context",
         "LLM explanation",
         "Stakeholder decision"
       ],
       note:
-        "This copilot is a planned extension, not a shipped project result. The intended RAG layer would ground responses in posterior outputs, scenario tables, metric definitions, assumptions, and the model card."
+        "This copilot is a planned extension, not a shipped project result. The intended RAG layer would ground every response in versioned posterior exports, scenario tables, metric definitions, assumptions, and model documentation."
     }
   },
   {

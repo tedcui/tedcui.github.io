@@ -11,7 +11,8 @@ export const siteConfig = {
   healthcareDashboards: {
     pipeline: "https://tedcui.github.io/healthcare-data-pipeline/",
     outreach: "https://tedcui.github.io/care-risk-outreach/"
-  }
+  },
+  bayesianMmmDashboard: "https://tedcui.github.io/bayesian-mmm-lab/"
 };
 
 export function sitePath(path = ""): string {
